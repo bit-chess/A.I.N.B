@@ -88,14 +88,18 @@ class Game:
 
                         if self.board.turn:
                             if self.board.hasSameColor(i, j, c[0], c[1]):
-                                letra.remove(c)
+                                if c in letra:
+                                    letra.remove(c)
                             elif copy.isWhiteKingInCheck():
-                                letra.remove(c)
+                                if c in letra:
+                                    letra.remove(c)
                         else:
                             if self.board.hasSameColor(i, j, c[0], c[1]):
-                                letra.remove(c)
+                                if c in letra:
+                                    letra.remove(c)
                             if copy.isBlackKingInCheck():
-                                letra.remove(c)
+                                if c in letra:
+                                    letra.remove(c)
 
                     list_[i][j] = letra
                 else:
@@ -212,7 +216,7 @@ class Game:
                         try:
                             c = next(x)
                             copy = self.board.clone()
-                            copy.copy.changePos(i, j, c[0], c[1])
+                            copy.changePos(i, j, c[0], c[1])
 
                             if not copy.isBlackKingInCheck():
                                 legal += 1

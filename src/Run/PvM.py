@@ -15,7 +15,7 @@ from Translator import Translator
 
 def main():
     board = Board()
-    depth = 3
+    depth = 5
 
     while not board.endOfGame:
         game = Game(board)

@@ -95,5 +95,5 @@ class AlphaBeta:
             if self.gb.getWeight(s) == search:
                 x = s
                 break
-        print(self.gb.getBoard(x))
+
         return self.gb.getBoard(x)
