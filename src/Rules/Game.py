@@ -87,12 +87,12 @@ class Game:
                         copy.changePos(i, j, c[0], c[1])
 
                         if self.board.turn:
-                            if self.board.has_same_color(i, j, c[0], c[1]):
+                            if self.board.hasSameColor(i, j, c[0], c[1]):
                                 letra.remove(c)
-                            elif copy.isWhite_king_in_check():
+                            elif copy.isWhiteKingInCheck():
                                 letra.remove(c)
                         else:
-                            if self.board.has_same_color(i, j, c[0], c[1]):
+                            if self.board.hasSameColor(i, j, c[0], c[1]):
                                 letra.remove(c)
                             if copy.isBlackKingInCheck():
                                 letra.remove(c)

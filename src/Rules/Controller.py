@@ -10,22 +10,22 @@ class Controller:
         for i in range(8):
             for j in range(8):
                 for a in list_moves[i][j]:
-                    if a == c and not b.has_same_color(i, j, a[0], a[1]):
+                    if a == c and not b.hasSameColor(i, j, a[0], a[1]):
                         return True
         return False
 
     @staticmethod
-    def is_square_defended(c, b):
+    def isSquareDefended(c, b):
         list_moves = Controller.uncheckedMoves(b)
         for i in range(8):
             for j in range(8):
                 for a in list_moves[i][j]:
-                    if a == c and b.has_same_color(i, j, a[0], a[1]):
+                    if a == c and b.hasSameColor(i, j, a[0], a[1]):
                         return True
         return False
 
     @staticmethod
-    def is_square_attacked_by_pieces(c_list, b, turn):
+    def isSquareAttackedByPieces(c_list, b, turn):
         list_moves = Controller.uncheckedMoves(b)
         for i in range(8):
             for j in range(8):
@@ -165,7 +165,7 @@ class Controller:
                 x = (i - 1, j)
                 moves_p.append(x)
 
-            if 0 <= i - 2 < 8 and b.has_pawn_moved(i, j) is False and b.getPiece(i - 2, j) == 'o' and b.getPiece(i - 1, j) == 'o':
+            if 0 <= i - 2 < 8 and b.hasPawnMoved(i, j) is False and b.getPiece(i - 2, j) == 'o' and b.getPiece(i - 1, j) == 'o':
                 x = (i - 2, j)
                 moves_p.append(x)
 
@@ -182,7 +182,7 @@ class Controller:
                 x = (i + 1, j)
                 moves_p.append(x)
 
-            if 0 <= i + 2 < 8 and b.has_pawn_moved(i, j) is False and b.getPiece(i + 2, j) == 'o' and b.getPiece(i + 1, j) == 'o':
+            if 0 <= i + 2 < 8 and b.hasPawnMoved(i, j) is False and b.getPiece(i + 2, j) == 'o' and b.getPiece(i + 1, j) == 'o':
                 x = (i + 2, j)
                 moves_p.append(x)
 
@@ -216,7 +216,7 @@ class Controller:
             x = pos_i + l[k]
             y = pos_j + c[k]
 
-            if not (0 <= x < 8 and 0 <= y < 8 and b.has_same_color(pos_i, pos_j, x, y)):
+            if not (0 <= x < 8 and 0 <= y < 8 and b.hasSameColor(pos_i, pos_j, x, y)):
                 continue
 
             moves.append((x, y))

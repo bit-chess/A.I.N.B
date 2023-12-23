@@ -16,8 +16,8 @@ class Board:
         self.hasRightBlackRookMoved = False
         self.hasLeftBlackRookMoved = False
         self.endOfGame = False
-        self.isCheckmateWhite = False
-        self.isCheckmateBlack = False
+        self.isCheckMateWhite = False
+        self.isCheckMateBlack = False
         self.turn = True
         self.hasBlackCastled = False
         self.hasWhiteCastled = False
@@ -41,8 +41,8 @@ class Board:
         b.hasWhiteCastled = self.hasWhiteCastled
         b.hasBlackCastled = self.hasBlackCastled
         b.endOfGame = self.endOfGame
-        b.isCheckmateBlack = self.isCheckmateBlack
-        b.isCheckmateWhite = self.isCheckmateWhite
+        b.isCheckMateBlack = self.isCheckMateBlack
+        b.isCheckMateWhite = self.isCheckMateWhite
         b.turn = self.turn
 
         return b
@@ -69,7 +69,7 @@ class Board:
     def isBlack_piece(self, piece):
         return piece.islower() and piece != 'o'
 
-    def has_same_color(self, me_i, me_j, that_piece_i, that_piece_j):
+    def hasSameColor(self, me_i, me_j, that_piece_i, that_piece_j):
         return ((self.isBlack(me_i, me_j) and self.isBlack(that_piece_i, that_piece_j)) or
                 (self.isWhite(me_i, me_j) and self.isWhite(that_piece_i, that_piece_j)))
 
@@ -86,7 +86,7 @@ class Board:
 
     def isWhite_king_in_check(self):
         unchecked_moves = Controller.uncheckedMoves(self)
-        king = self.index_of_piece('K')[0]
+        king = self.indexOfPiece('K')[0]
         for i in range(8):
             for j in range(8):
                 if self.isBlack(i, j):
@@ -97,7 +97,7 @@ class Board:
 
     def isBlackKingInCheck(self):
         unchecked_moves = Controller.uncheckedMoves(self)
-        king = self.index_of_piece('k')[0]
+        king = self.indexOfPiece('k')[0]
         for i in range(8):
             for j in range(8):
                 if self.isWhite(i, j):
@@ -112,7 +112,7 @@ class Board:
     def getBoard(self):
         return self.chessBoard
 
-    def index_of_piece(self, piece):
+    def indexOfPiece(self, piece):
         positions = [None] * 10
         p = 0
 
@@ -157,7 +157,7 @@ class Board:
             print(letters[i], end="")
         print()
 
-    def has_pawn_moved(self, pos_i, pos_j):
+    def hasPawnMoved(self, pos_i, pos_j):
         piece = self.getPiece(pos_i, pos_j)
         if piece not in ['p', 'P']:
             raise UnexpectedPieceException("Board.hasPawnMoved foi chamado em uma casa que não contém um peão")
@@ -170,7 +170,7 @@ class Board:
 
     def isBlackKingInCheck(self):
         list_moves = Controller.uncheckedMoves(self)
-        king = self.index_of_piece('k')[0]
+        king = self.indexOfPiece('k')[0]
         for i in range(8):
             for j in range(8):
                 if self.isWhite(i, j):
@@ -181,7 +181,7 @@ class Board:
 
     def isWhiteKingInCheck(self):
         list_moves = Controller.uncheckedMoves(self)
-        king = self.index_of_piece('K')[0]
+        king = self.indexOfPiece('K')[0]
         for i in range(8):
             for j in range(8):
                 if self.isBlack(i, j):
@@ -196,7 +196,7 @@ class Board:
     def getBoard(self):
         return self.chessBoard
 
-    def index_of_piece(self, b):
+    def indexOfPiece(self, b):
         positions = [None] * 10
         p = 0
 
@@ -222,7 +222,7 @@ class Board:
                 return (0, j)
         return (-1, -1)
 
-    def get_turn(self):
+    def getTurn(self):
         return self.turn
 
     def setLastMove(self, i, j, a, b):
