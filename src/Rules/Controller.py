@@ -1,5 +1,4 @@
 from typing import List
-from LinkedList import LinkedList  # Certifique-se de ter a classe LinkedList ou ajuste conforme necessário
 from UnexpectedPieceException import UnexpectedPieceException
 from IllegalMoveException import IllegalMoveException
 from BoardOutOfBoundsException import BoardOutOfBoundsException
