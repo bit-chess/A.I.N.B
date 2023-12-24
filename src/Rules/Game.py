@@ -68,7 +68,7 @@ class Game:
             self.board.setLastMove(i, j, final_i, final_j)
         elif self.isEnPassantLegal(i, j, c) and self.board.isWhite(i, j) == self.board.turn:
             self.board.changePos(i, j, c[0], c[1])
-            self.board.eliminate(i, c.pos_j)
+            self.board.eliminate(i, c[1])
             self.board.turn = not self.board.turn
         else:
             raise IllegalMoveException("Movimento ilegal")
@@ -129,13 +129,14 @@ class Game:
                 to_remove = []
                 for c in self.passBoard[3][j]:
                     copy = self.board.clone()
-                    copy.changePos(3, j, c)
-                    copy.eliminate(3, c.pos_j)
+                    copy.changePos(3, j, c[0], c[1])
+                    copy.eliminate(3, c[1])
                     if copy.isWhiteKingInCheck():
                         to_remove.append(c)
 
                 for c in to_remove:
-                    self.passBoard[3][j].remove(c)
+                    if c in self.passBoard[3][j]:
+                        self.passBoard[3][j].remove(c)
         else:
             for j in range(8):
                 self.passBoard[4][j] = Controller.pass_pawn(self.board, 4, j)[0]
@@ -144,13 +145,14 @@ class Game:
                 to_remove = []
                 for c in self.passBoard[4][j]:
                     copy = self.board.clone()
-                    copy.changePos(4, j, c)
-                    copy.eliminate(4, c.pos_j)
+                    copy.changePos(4, j, c[0], c[1])
+                    copy.eliminate(4, c[1])
                     if copy.isBlackKingInCheck():
                         to_remove.append(c)
 
                 for c in to_remove:
-                    self.passBoard[4][j].remove(c)
+                    if c in self.passBoard[4][j]:
+                        self.passBoard[4][j].remove(c)
 
     def isLegal(self, i, j, c):
         for x in self.stateBoard[i][j]:
@@ -162,11 +164,11 @@ class Game:
     def isEnPassantLegal(self, i, j, c):
         if i == 3 and self.board.turn:
             for x in self.passBoard[i][j]:
-                if x.pos_i == c.pos_i and x.pos_j == c.pos_j:
+                if x[0] == c[0] and x[1] == c[1]:
                     return True
         elif i == 4 and not self.board.turn:
             for x in self.passBoard[i][j]:
-                if x.pos_i == c.pos_i and x.pos_j == c.pos_j:
+                if x[0] == c[0] and x[1] == c[1]:
                     return True
 
         return False
@@ -186,7 +188,7 @@ class Game:
                         try:
                             c = next(x)
                             copy = self.board.clone()
-                            copy.copy.changePos(i, j, c[0], c[1])
+                            copy.changePos(i, j, c[0], c[1])
 
                             if not copy.isWhiteKingInCheck():
                                 legal += 1
